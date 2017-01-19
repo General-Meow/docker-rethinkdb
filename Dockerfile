@@ -14,4 +14,4 @@ RUN ["/home/rethinkdb/files/install.sh"]
 COPY ["./files/etc/rethinkdb/instances.d/instance.conf", "/etc/rethinkdb/instances.d/instance.conf"]
 VOLUME /var/lib/rethinkdb/default
 VOLUME /var/log/rethinkdb
-ENTRYPOINT ["service", "rethinkdb", "start"]
+ENTRYPOINT ["rethinkdb", "--config-file", "/etc/rethinkdb/instances.d/instance.conf"]
