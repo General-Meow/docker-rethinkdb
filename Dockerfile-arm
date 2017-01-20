@@ -1,10 +1,11 @@
 # build: docker build -t generalmeow/rethinkdb:<TAG>-arm
 # run: docker run -d -p 28015:28015 -p <>:8080 --name rethinkdb -v <>:/var/lib/rethinkdb/default -v <>:/var/log/rethinkdb generalmeow/rethinkdb:<TAG>-arm
-FROM hypriot/rpi-alpine-scratch
-RUN apk update && \
-apk upgrade && \
-apk add bash && \
-rm -rf /var/cache/apk
+#FROM hypriot/rpi-alpine-scratch
+#RUN apk update && \
+#apk upgrade && \
+#apk add bash && \
+#rm -rf /var/cache/apk
+FROM resin/rpi-raspbian
 MAINTAINER Paul Hoang 2017-01-16
 EXPOSE 28015
 EXPOSE 8080
