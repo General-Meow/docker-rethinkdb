@@ -6,18 +6,13 @@ EXPOSE 28015
 EXPOSE 8080
 RUN ["apt-get", "update"]
 RUN ["apt-get", "install", "libprotobuf9", "-qy"]
-RUN ["mkdir", "-p", "/home/rethinkdb/files"]
+RUN ["apt-get", "clean", "libprotobuf9", "-qy"]
 RUN ["mkdir", "-p", "/home/rethinkdb/data"]
 RUN ["mkdir", "-p", "/home/rethinkdb/logs"]
 RUN ["touch", "/home/rethinkdb/logs/log"]
-RUN ["chown", "-R", "root:root", "/home/rethinkdb"]
-COPY ["./files", "/home/rethinkdb/files"]
-RUN ["/home/rethinkdb/files/rethinkdb-arm-2.3.5/catFiles.sh"]
-RUN ["mv", "/home/rethinkdb/build/rethinkdb-2.3.5", "/home/rethinkdb"]
-RUN ["rm", "-rf", "/home/rethinkdb/files"]
-RUN ["rm", "-rf", "/home/rethinkdb/build"]
+ADD ["./rethinkdb.tar.gz", "/home/rethinkdb"]
 COPY ["./files/etc/rethinkdb/instances.d/instance.conf", "/etc/rethinkdb/instances.d/instance.conf"]
 VOLUME /var/lib/rethinkdb/default
 VOLUME /var/log/rethinkdb
-WORKDIR /home/rethinkdb/rethinkdb-2.3.5
+WORKDIR /home/rethinkdb/build/rethinkdb-2.3.5
 ENTRYPOINT ["./rethinkdb", "--config-file", "/etc/rethinkdb/instances.d/instance.conf"]
