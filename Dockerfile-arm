@@ -14,7 +14,7 @@ RUN ["chown", "-R", "root:root", "/home/rethinkdb"]
 COPY ["./files", "/home/rethinkdb/files"]
 RUN ["/home/rethinkdb/files/rethinkdb-arm-2.3.5/catFiles.sh"]
 RUN ["mv", "/home/rethinkdb/build/rethinkdb-2.3.5", "/home/rethinkdb"]
-RUN ["rm", "-rf", "/home/rethinkdb/files"]
+RUN ["rm", "-rf", "/home/rethinkdb/files", "/home/rethinkdb/build"]
 COPY ["./files/etc/rethinkdb/instances.d/instance.conf", "/etc/rethinkdb/instances.d/instance.conf"]
 VOLUME /var/lib/rethinkdb/default
 VOLUME /var/log/rethinkdb
