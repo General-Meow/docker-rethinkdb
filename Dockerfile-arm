@@ -10,7 +10,7 @@ RUN ["apt-get", "clean", "libprotobuf9", "-qy"]
 RUN ["mkdir", "-p", "/home/rethinkdb/data"]
 RUN ["mkdir", "-p", "/home/rethinkdb/logs"]
 RUN ["touch", "/home/rethinkdb/logs/log"]
-ADD ["./rethinkdb.tar.gz", "/home/rethinkdb"]
+ADD ["./build/rethinkdb-2.3.5", "/home/rethinkdb"]
 COPY ["./files/etc/rethinkdb/instances.d/instance.conf", "/etc/rethinkdb/instances.d/instance.conf"]
 VOLUME /var/lib/rethinkdb/default
 VOLUME /var/log/rethinkdb
