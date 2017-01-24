@@ -14,5 +14,6 @@ COPY ["./build/rethinkdb-2.3.5", "/home/rethinkdb"]
 COPY ["./files/etc/rethinkdb/instances.d/instance.conf", "/etc/rethinkdb/instances.d/instance.conf"]
 VOLUME /var/lib/rethinkdb/default
 VOLUME /var/log/rethinkdb
+VOLUME /home/rethinkdb/data
 WORKDIR /home/rethinkdb
 ENTRYPOINT ["./rethinkdb", "--config-file", "/etc/rethinkdb/instances.d/instance.conf"]
